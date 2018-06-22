@@ -68,3 +68,23 @@
 // for (let i = 2; i < arr.length; i += 2){
 //     console.log(i)}
 // // console.log();
+
+
+//================================================
+const arr = [1,2,3,0,4,5];
+
+let i = arr.length, 
+    j = arr.length; 
+
+do {
+  i -= 1;
+  console.log(`arr[${i}] = ${arr[i]}`)
+}
+while(i)
+
+
+do {
+    j -= 1;
+    console.log(`while(arr[j]) arr[${j}] = ${arr[j]}`)
+  }
+while(arr[j])   
