@@ -71,20 +71,22 @@
 
 
 //================================================
-const arr = [1,2,3,0,4,5];
+// const arr = [1,2,3,0,4,5];
 
-let i = arr.length, 
-    j = arr.length; 
+// let i = arr.length, 
+//     j = arr.length; 
 
-do {
-  i -= 1;
-  console.log(`arr[${i}] = ${arr[i]}`)
-}
-while(i)
+// do {
+//   i -= 1;
+//   console.log(`arr[${i}] = ${arr[i]}`)
+// }
+// while(i)
 
 
-do {
-    j -= 1;
-    console.log(`while(arr[j]) arr[${j}] = ${arr[j]}`)
-  }
-while(arr[j])   
+// do {
+//     j -= 1;
+//     console.log(`while(arr[j]) arr[${j}] = ${arr[j]}`)
+//   }
+// while(arr[j])  
+
+// console.log(Number('deref') == NuN)
