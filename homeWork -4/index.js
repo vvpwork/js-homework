@@ -133,50 +133,113 @@
       используя Object.entries и for...of
 */
 
-const user = {
-  name: "Mango",
-  age: 20,
-  hobby: "html",
-  premium: true
-};
+// const user = {
+//   name: "Mango",
+//   age: 20,
+//   hobby: "html",
+//   premium: true
+// };
 
-user.mood = 'happy';
-user.hobby = 'javascript'
-delete user.premium;
-// for(let red in user ){
-//   console.log(red);
+// user.mood = 'happy';
+// user.hobby = 'javascript'
+// delete user.premium;
+// // for(let red in user ){
+// //   console.log(red);
+// // }
+// // const keys = Object.keys(user);
+// // for (let redo of keys){
+// //   console.log(user[redo])
+// // }
+
+// let sv = Object.entries(user)
+// for (let der of sv){
+//   let key = der[0];
+//   let value = der[1]
+//   console.log(`${key} : ${value}`)
 // }
-// const keys = Object.keys(user);
-// for (let redo of keys){
-//   console.log(user[redo])
+// /*
+//   Напиште скрипт который определит и выведет в консоль 
+//   имя сотрудника который выполнил больше всех задач.
+
+//   Сотрудники и кол-во выполненых задач содержатся 
+//   как свойства объекта в формате "имя":"кол-во задач"
+// */
+
+// const tasksCompleted = {
+//   ann: 29,
+//   david: 35,/*  
+//   Напишите функцию countProps(obj),
+//   считающую кол-во свойств в объекте.
+//   Функция возвращает количество свойств.
+// */
+
+// // Вызовы функции для проверки
+// console.log(
+//   countProps({})
+// ); // 0
+
+// console.log(
+//   countProps({a: 1, b: 3, c: 'hello'})
+// ); // 3
+
+// function countProps(obj) { 
+//   let red = Object.keys(obj);
+//   return red.length
 // }
 
-let sv = Object.entries(user)
-for (let der of sv){
-  let key = der[0];
-  let value = der[1]
-  console.log(`${key} : ${value}`)
-}
-/*
-  Напиште скрипт который определит и выведет в консоль 
-  имя сотрудника который выполнил больше всех задач.
 
-  Сотрудники и кол-во выполненых задач содержатся 
-  как свойства объекта в формате "имя":"кол-во задач"
+//   helen: 1,
+//   lorence: 99
+// };
+
+// let key = Object.keys(tasksCompleted)
+
+// for (let i = 1; i < key.length; i += 1){
+// if (tasksCompleted[key[i]] > tasksCompleted[key[0]])
+//   key[0] = key[i];
+// }
+
+// console.log(key[0])
+// /*  
+//   Напишите функцию countProps(obj),
+//   считающую кол-во свойств в объекте.
+//   Функция возвращает количество свойств.
+// */
+
+// // Вызовы функции для проверки
+// console.log(
+//   countProps({})
+// ); // 0
+
+// console.log(
+//   countProps({a: 1, b: 3, c: 'hello'})
+// ); // 3
+
+// function countProps(obj) { 
+//   let red = Object.keys(obj);
+//   return red.length
+// }
+/*  
+  Создайте функцию isObjectEmpty(obj), которая получает 
+  один аргумент obj - объект, и проверяет пуст ли он (есть ли в нем свойства).
+  
+  Возвращает true если объект пустой, false если не пустой.
 */
 
-const tasksCompleted = {
-  ann: 29,
-  david: 35,
-  helen: 1,
-  lorence: 99
-};
+// // Вызовы функции для проверки
+// console.log(
+//   isObjectEmpty({})
+// ); // true
 
-let key = Object.keys(tasksCompleted)
+// console.log(
+//   isObjectEmpty({a: 1})
+// ); // false
 
-for (let i = 1; i < key.length; i += 1){
-if (tasksCompleted[key[i]] > tasksCompleted[key[0]])
-  key[0] = key[i];
-}
+// console.log(
+//   isObjectEmpty({a: 1, b: 2})
+// ); // false
 
-console.log(key[0])
+// function isObjectEmpty(obj){
+//   let red = Object.keys(obj);
+//   return red.length == 0 ? true : false; 
+// }
