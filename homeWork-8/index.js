@@ -20,7 +20,7 @@ const galleryItems = [
     { preview: './img/preview-6.png', fullview: './img/image-6.jpg', alt: "alt text 6" },
   ];
 
-class galleryImages {
+class GalleryImages {
     constructor(items, parentNode){
         this.items = items;
         this.parentNode = parentNode;
@@ -69,7 +69,7 @@ class galleryImages {
 let gallary = document.querySelector('.image-gallery');
 let img = document.querySelector('.img')
 
-const red = new galleryImages(  galleryItems, img);
-const der = new galleryImages( galleryItems, gallary)
+const red = new GalleryImages(  galleryItems, img);
+const der = new GalleryImages( galleryItems, gallary)
 red.addImage()
 der.addImage()
