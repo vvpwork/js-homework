@@ -1,0 +1,46 @@
+.stopwatch{
+    max-width: 400px;
+    margin: 50px auto;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px 0px rgba(0,0,0, 0.6);
+    padding-top: 20px;
+    padding-bottom: 15px;
+
+}
+.laps{
+    max-width: 150px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font: 400 25px 'sans-serif';
+    
+}
+
+.time{
+    text-align: center;
+    font: 600 35px 'sans-serif';
+
+}
+
+.btn{
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    background: #333333;
+    border-radius: 5px;
+    width: 65px;
+    height: 35px;
+    font: 400 20px sans-serif;
+    color: white;
+
+}
+.btn:hover{
+    color: #333333;
+    background: white;
+    cursor: pointer;
+}
+
+.js-start{
+    margin-left: 90px;
+    width: 85px;
+}
+
