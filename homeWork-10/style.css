@@ -104,7 +104,7 @@ button:before{
 }
 
 .form__user-id::before{
-  content: 'Введите ID пользователя в форму выше и нажмите на user';
+  content: 'Введите ID пользователя в форму выше и нажмите на id';
   
 }
 .form__remove-user::before{
