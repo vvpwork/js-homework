@@ -131,6 +131,7 @@ function fetchAdd(name){
 }
 function fetchApdate(name){
     let arr = name.split(' ');
+     if(!arr[1]||!arr[2])return refs.result.innerHTML= `<p>не верный ввод данных`;
     fetch(`${refs.url}${arr[0]}`,{
         method: 'PUT',
         body: JSON.stringify({name:arr[1], age:Number(arr[2])}),
