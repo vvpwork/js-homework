@@ -101,10 +101,9 @@ function handlerSubmit (ev) {
     color: [],
     size: []
   }
-checkInput(filter)
-let cardPast = filterCard(filter)
-cards(cardPast)
-
+  checkInput(filter)
+  let cardPast = filterCard(filter);
+  cards(cardPast)
 }
 
 function checkInput (filter) {
@@ -127,24 +126,28 @@ function checkInput (filter) {
 function cards (cardPast) {
   let template = Handlebars.compile(refs.items.innerHTML.trim())
   let cer = cardPast.reduce((acc, el) => acc + template(el), '')
-  refs.list.innerHTML = cer
+  refs.list.innerHTML = cer.length > 1? cer: `<p class = "error">${new Error('нет в наличии')}<p>`;
 }
 
-function filterCard({date, color, size}){
-    let  card = laptops.filter(i=>{
-        return date.includes(i.release_date)||color.includes(i.color)||size.includes(i.size)
-    })
-    card = card.filter(i => {
-        if (color.length < 1) return card
-        return color.includes(i.color)
-      })
-      card = card.filter(i => {
-        if (size.length < 1) return card
-        return size.includes(i.size)
-      })
-      card = card.filter(i => {
-        if (date.length < 1) return card
-        return date.includes(i.release_date)
-      })
-      return card
+function filterCard ({ date, color, size }) {
+  let card = laptops.filter(i => {
+    return (
+      date.includes(i.release_date) ||
+      color.includes(i.color) ||
+      size.includes(i.size)
+    )
+  })
+  card = card.filter(i => {
+    if (color.length < 1) return card
+    return color.includes(i.color)
+  })
+  card = card.filter(i => {
+    if (size.length < 1) return card
+    return size.includes(i.size)
+  })
+  card = card.filter(i => {
+    if (date.length < 1) return card
+    return date.includes(i.release_date)
+  })
+  return card
 }

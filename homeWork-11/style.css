@@ -34,6 +34,10 @@ body{
     font: 600 18px monospace;
     color: #3655B5;
 }
+.error{
+    font:600 25px monospace;
+    color: #B60000;
+}
 @media (max-width:564px){
     body{
         flex-wrap: wrap;
