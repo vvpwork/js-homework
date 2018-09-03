@@ -6,6 +6,9 @@ body{
     min-width: 200px;
     margin-right: 50px;
 }
+.form li{
+  list-style:none;
+}
 
 .card__list{
     display: flex;
