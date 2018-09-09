@@ -13,10 +13,6 @@
     "watch-ts": "gulp watch-ts",
     "tss": "gulp tss"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/axZerk/gulp-starter-kit.git"
-  },
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "MIT",
   "bugs": {
