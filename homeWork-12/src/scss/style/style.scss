@@ -1,0 +1,15 @@
+.form{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    
+}
+.url{
+    &__list{
+        margin-top: 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; 
+        list-style: none;
+    }
+}

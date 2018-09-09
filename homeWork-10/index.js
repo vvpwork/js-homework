@@ -27,12 +27,6 @@ function handlerClick(ev){
         case (evt.classList.contains('form__add-user')):return fetchAdd(name);break
         case (evt.classList.contains('form__apdate')):return fetchApdate(name); break 
     }
-    
-    // if(evt.classList.contains('form__all-users'))return fetchAll();
-    // if(evt.classList.contains('form__user-id'))return fetchId(name);
-    // if(evt.classList.contains('form__remove-user'))return fetchRemove(name);
-    // if(evt.classList.contains('form__add-user'))return fetchAdd(name);
-    // if(evt.classList.contains('form__apdate'))return fetchApdate(name);  
 }
 
  function fetchAll (){
