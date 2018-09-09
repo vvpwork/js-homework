@@ -15,7 +15,7 @@ const refs = {
 
 }
 let tempArr = []
-let url = []
+let url = ['http://api.linkpreview.net', 'http://api.linkpreview.net.ter']
 const urlTest = /\b(?:(?:https?|ftp|http):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i
 
 refs.form.addEventListener('submit', hendlerSubmit)
@@ -24,9 +24,8 @@ function hendlerSubmit ({ target }) {
   if (url.includes(inp)) return alert('такая закладка уже существует')
   if (!urlTest.test(inp)) return alert('не вверный ввод урла')
   url.push(inp)
-  let red =  tamplete(url);
- past(red)
- console.log(tempArr);
+ tamplete(url);
+ 
 }
 
 function preview (user_url) {
@@ -39,16 +38,28 @@ function preview (user_url) {
 }
 
 function tamplete (arr) {
-    let tempArr = []
+    tempArr = []
     arr.map(n => {
-    preview(n).then(d => tempArr.push(d)).catch(er => console.log(er))
+    preview(n)
+    .then(d => {
+    tempArr.push(d)
+    console.log(d.url);
+    return tempArr} )
+    .then(data=> past(data))
+    .catch(er => console.log(er))
   })
   return tempArr
   
 }
 
 function past(arr){ 
-    let p = arr.reduce((acc, el) => acc=el.title, '')
-    // refs.list.innerHTML= red;
+    let p = arr.reduce((acc, el) => acc + el.title, '')
+    refs.list.innerHTML= p;
 }
 
+// function delet(a){
+//     url.map(r=> r == a? delete r : r);
+// }
+
+// delet('http://api.linkpreview.net');
+// console.log(url);

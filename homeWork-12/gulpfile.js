@@ -24,17 +24,17 @@ const wrap       = require('gulp-wrap');
 const declare    = require('gulp-declare');
 
 
-gulp.task('templates', function(){
-    gulp.src('./html/templates/*.html')
-        .pipe(handlebars())
+gulp.task('templates', () =>
+    gulp.src('./templates/*.html')
+        .pipe(handlebars({handlebars: require('handlebars')}))
         .pipe(wrap('Handlebars.template(<%= contents %>)'))
         .pipe(declare({
-            namespace: 'app.templates',
-            noRedeclare: true
+            namespace: 'VP.templates',
+            noRedeclare: true,
         }))
         .pipe(concat('templates.js'))
-        .pipe(gulp.dest('./build/js'));
-})
+        .pipe(gulp.dest('./templates')),
+)
 gulp.task('html', () =>
   gulp
     .src('./src/*.html')
@@ -139,7 +139,6 @@ gulp.task('prepare', () => del(['**/.gitkeep', 'README.md', 'banner.png']));
 gulp.task('build', cb =>
   sequence(
     'del:build',
-    'templates',
     'svg-sprite',
     'images',
     'fonts',

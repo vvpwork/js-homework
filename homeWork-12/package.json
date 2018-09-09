@@ -9,9 +9,7 @@
     "build": "gulp build",
     "svg-sprite": "gulp svg-sprite",
     "images": "gulp images",
-    "TS": "gulp ts",
-    "watch-ts": "gulp watch-ts",
-    "tss": "gulp tss"
+    "t-html": "gulp templates"
   },
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "MIT",

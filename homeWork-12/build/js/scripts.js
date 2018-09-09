@@ -16,7 +16,7 @@ var refs = {
 
 };
 var tempArr = [];
-var url = [];
+var url = ['http://api.linkpreview.net', 'http://api.linkpreview.net.ter'];
 var urlTest = /\b(?:(?:https?|ftp|http):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i;
 
 refs.form.addEventListener('submit', hendlerSubmit);
@@ -27,9 +27,7 @@ function hendlerSubmit(_ref) {
   if (url.includes(inp)) return alert('такая закладка уже существует');
   if (!urlTest.test(inp)) return alert('не вверный ввод урла');
   url.push(inp);
-  var red = tamplete(url);
-  past(red);
-  console.log(tempArr);
+  tamplete(url);
 }
 
 function preview(user_url) {
@@ -40,10 +38,14 @@ function preview(user_url) {
 }
 
 function tamplete(arr) {
-  var tempArr = [];
+  tempArr = [];
   arr.map(function (n) {
     preview(n).then(function (d) {
-      return tempArr.push(d);
+      tempArr.push(d);
+      console.log(d.url);
+      return tempArr;
+    }).then(function (data) {
+      return past(data);
     }).catch(function (er) {
       return console.log(er);
     });
@@ -53,7 +55,14 @@ function tamplete(arr) {
 
 function past(arr) {
   var p = arr.reduce(function (acc, el) {
-    return acc = el.title;
+    return acc + el.title;
   }, '');
-  // refs.list.innerHTML= red;
+  refs.list.innerHTML = p;
 }
+
+// function delet(a){
+//     url.map(r=> r == a? delete r : r);
+// }
+
+// delet('http://api.linkpreview.net');
+// console.log(url);
