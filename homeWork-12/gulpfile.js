@@ -26,7 +26,7 @@ const declare    = require('gulp-declare');
 
 gulp.task('templates', () =>
     gulp.src('./templates/*.html')
-        .pipe(handlebars({handlebars: require('handlebars')}))
+        .pipe(handlebars())
         .pipe(wrap('Handlebars.template(<%= contents %>)'))
         .pipe(declare({
             namespace: 'VP.templates',

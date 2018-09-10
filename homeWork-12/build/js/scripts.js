@@ -7,27 +7,37 @@
 // }
 
 var APP_KEY = '5b93d8100e62278344b8abff221294244b92ecbf5b0bd';
-
 var refs = {
   form: document.querySelector('.form'),
   input: document.querySelector('.form__input'),
   list: document.querySelector('.url__list'),
-  urlPreview: 'http://api.linkpreview.net'
-
+  temp: document.querySelector('.url__templates').innerHTML.trim(),
+  urlPreview: 'http://api.linkpreview.net',
+  urlTest: /\b(?:(?:https?|ftp|http):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i,
+  url: [],
+  tempArr: []
 };
-var tempArr = [];
-var url = ['http://api.linkpreview.net', 'http://api.linkpreview.net.ter'];
-var urlTest = /\b(?:(?:https?|ftp|http):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i;
 
 refs.form.addEventListener('submit', hendlerSubmit);
-function hendlerSubmit(_ref) {
+refs.list.addEventListener('click', handlerDeletList);
+
+function handlerDeletList(_ref) {
   var target = _ref.target;
 
+  if (target.nodeName !== 'BUTTON') return;
+  var items = target.closest('.url__items');
+  var urlAddress = items.querySelector('.url__address').innerHTML;
+  deletUrl(urlAddress, items);
+}
+
+function hendlerSubmit(_ref2) {
+  var target = _ref2.target;
+
   var inp = refs.input.value;
-  if (url.includes(inp)) return alert('такая закладка уже существует');
-  if (!urlTest.test(inp)) return alert('не вверный ввод урла');
-  url.push(inp);
-  tamplete(url);
+  if (refs.url.includes(inp)) return alert('такая закладка уже существует');
+  if (!refs.urlTest.test(inp)) return alert('не вверный ввод урла');
+  refs.url.push(inp);
+  tamplete(refs.url);
 }
 
 function preview(user_url) {
@@ -38,31 +48,36 @@ function preview(user_url) {
 }
 
 function tamplete(arr) {
-  tempArr = [];
+  refs.tempArr = [];
   arr.map(function (n) {
     preview(n).then(function (d) {
-      tempArr.push(d);
-      console.log(d.url);
-      return tempArr;
-    }).then(function (data) {
-      return past(data);
+      refs.tempArr.push(d);
+      return refs.tempArr;
+    }).then(function (arr) {
+      return past(arr);
     }).catch(function (er) {
       return console.log(er);
     });
   });
-  return tempArr;
 }
 
 function past(arr) {
+  var t = Handlebars.compile(refs.temp);
   var p = arr.reduce(function (acc, el) {
-    return acc + el.title;
+    return acc + t(el);
   }, '');
   refs.list.innerHTML = p;
 }
 
-// function delet(a){
-//     url.map(r=> r == a? delete r : r);
-// }
-
-// delet('http://api.linkpreview.net');
-// console.log(url);
+function deletUrl(a, b) {
+  new Promise(function (resolve, reject) {
+    resolve(refs.url.map(function (r) {
+      if (a == r || '{r}/') refs.url.splice(refs.url.indexOf(r), 1);
+    }));
+    reject('error');
+  }).then(function (r) {
+    return b.innerHTML = '';
+  }).catch(function (error) {
+    return console.log(error);
+  });
+}
