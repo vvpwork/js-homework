@@ -17,6 +17,10 @@ var refs = {
   url: [],
   tempArr: []
 };
+// if(getLocalStorageObjectItem('urlList')){
+//   template(getLocalStorageObjectItem('urlList'))
+// }
+
 
 refs.form.addEventListener('submit', hendlerSubmit);
 refs.list.addEventListener('click', handlerDeletList);
@@ -28,6 +32,7 @@ function handlerDeletList(_ref) {
   var items = target.closest('.url__items');
   var urlAddress = items.querySelector('.url__address').innerHTML;
   deletUrl(urlAddress, items);
+  setLocalStorageObjectItem('urlList', refs.tempArr);
 }
 
 function hendlerSubmit(_ref2) {
@@ -37,7 +42,7 @@ function hendlerSubmit(_ref2) {
   if (refs.url.includes(inp)) return alert('такая закладка уже существует');
   if (!refs.urlTest.test(inp)) return alert('не вверный ввод урла');
   refs.url.push(inp);
-  tamplete(refs.url);
+  template(refs.url);
 }
 
 function preview(user_url) {
@@ -47,13 +52,15 @@ function preview(user_url) {
   });
 }
 
-function tamplete(arr) {
+function template(arr) {
   refs.tempArr = [];
+  setLocalStorageObjectItem('urlList', arr);
   arr.map(function (n) {
     preview(n).then(function (d) {
       refs.tempArr.push(d);
       return refs.tempArr;
     }).then(function (arr) {
+
       return past(arr);
     }).catch(function (er) {
       return console.log(er);
@@ -81,3 +88,28 @@ function deletUrl(a, b) {
     return console.log(error);
   });
 }
+
+function setLocalStorageObjectItem(key, value) {
+  if (value === undefined) {
+    localStorage.removeItem(key);
+  } else {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+}
+function getLocalStorageObjectItem(key) {
+  var json = localStorage.getItem(key);
+  if (json === undefined) {
+    return undefined;
+  }
+  return JSON.parse(json);
+}
+var localUrlList = Array.from(getLocalStorageObjectItem('urlList'));
+
+function startDec(arr) {
+  arr.map(function (r) {
+    refs.url.push(r.url);
+  });
+  template(refs.url);
+}
+
+startDec(localUrlList);

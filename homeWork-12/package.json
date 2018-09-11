@@ -44,6 +44,7 @@
   "dependencies": {
     "gulp-declare": "^0.3.0",
     "gulp-handlebars": "^5.0.2",
-    "gulp-wrap": "^0.14.0"
+    "gulp-wrap": "^0.14.0",
+    "start": "^5.1.0"
   }
 }

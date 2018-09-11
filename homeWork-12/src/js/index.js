@@ -16,6 +16,10 @@ const refs = {
   url: [],
   tempArr: [],
 };
+// if(getLocalStorageObjectItem('urlList')){
+//   template(getLocalStorageObjectItem('urlList'))
+// }
+
 
 refs.form.addEventListener ('submit', hendlerSubmit);
 refs.list.addEventListener ('click', handlerDeletList);
@@ -25,6 +29,7 @@ function handlerDeletList({target}) {
   let items = target.closest ('.url__items');
   let urlAddress = items.querySelector ('.url__address').innerHTML;
   deletUrl (urlAddress, items);
+  setLocalStorageObjectItem('urlList', refs.tempArr)
 }
 
 function hendlerSubmit({target}) {
@@ -32,7 +37,7 @@ function hendlerSubmit({target}) {
   if (refs.url.includes (inp)) return alert ('такая закладка уже существует');
   if (!refs.urlTest.test (inp)) return alert ('не вверный ввод урла');
   refs.url.push (inp);
-  tamplete (refs.url);
+  template (refs.url);
 }
 
 function preview (user_url) {
@@ -44,15 +49,18 @@ function preview (user_url) {
   });
 }
 
-function tamplete (arr) {
+function template (arr) {
   refs.tempArr = [];
+  setLocalStorageObjectItem('urlList', arr)
   arr.map (n => {
     preview (n)
       .then (d => {
         refs.tempArr.push (d);
         return refs.tempArr;
       })
-      .then (arr => past (arr))
+      .then (arr =>{ 
+        
+        return past(arr)})
       .catch (er => console.log (er));
   });
 }
@@ -66,10 +74,35 @@ function past (arr) {
 function deletUrl (a, b) {
   new Promise ((resolve, reject) => {
    resolve( refs.url.map (r => {
-      if (a == r || `{r}/`) refs.url.splice (refs.url.indexOf (r), 1);
+      if (a == r || `{r}/`) refs.url.splice (refs.url.indexOf(r), 1);
     }))
     reject('error');
   })
-    .then (r => (b.innerHTML = ''))
+    .then (r => b.innerHTML = '')
     .catch (error => console.log (error));
 }
+
+function setLocalStorageObjectItem(key, value) {
+  if (value === undefined) {
+    localStorage.removeItem(key);
+  } else {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+}
+function getLocalStorageObjectItem(key) {
+  var json = localStorage.getItem(key);
+  if (json === undefined) {
+    return undefined;
+  }
+  return JSON.parse(json);
+}
+let localUrlList = Array.from(getLocalStorageObjectItem('urlList'))
+
+function startDec(arr){
+arr.map(r=> {
+  refs.url.push(r.url)
+})
+template(refs.url)
+}
+
+startDec(localUrlList)
