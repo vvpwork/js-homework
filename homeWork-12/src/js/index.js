@@ -106,5 +106,6 @@ function slesh (a) {
 
 (function startDesc () {
   refs.url = Array.from (getLocalStorageObjectItem ('urlList'));
+  if(refs.url.langth < 1) return;
   template (refs.url);
 }) ();
