@@ -27,9 +27,8 @@ function handlerDeletList(_ref) {
   setLocalStorageObjectItem('urlList', refs.tempArr);
 }
 
-function hendlerSubmit(_ref2) {
-  var target = _ref2.target;
-
+function hendlerSubmit(ev) {
+  ev.preventDefault();
   var inp = slesh(refs.input.value);
   if (!refs.urlTest.test(inp)) return alert('error: undefined url');
   if (refs.url.includes(inp)) return alert('this url is added');
@@ -105,5 +104,6 @@ function slesh(a) {
 
 (function startDesc() {
   refs.url = Array.from(getLocalStorageObjectItem('urlList'));
+  if (refs.url.langth < 1) return;
   template(refs.url);
 })();
