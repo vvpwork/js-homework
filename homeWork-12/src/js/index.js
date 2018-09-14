@@ -25,7 +25,8 @@ function handlerDeletList({target}) {
   setLocalStorageObjectItem ('urlList', refs.tempArr);
 }
 
-function hendlerSubmit({target}) {
+function hendlerSubmit(ev) {
+  ev.preventDefault()
   let inp = slesh (refs.input.value);
   if (!refs.urlTest.test (inp)) return alert ('error: undefined url');
   if (refs.url.includes(inp) )return alert ('this url is added');
