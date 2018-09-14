@@ -1,12 +1,8 @@
 'use strict';
 'use strict';
-// class Url{
-//     constructor(){
-//         this.
-//     }
-// }
 
 var APP_KEY = '5b93d8100e62278344b8abff221294244b92ecbf5b0bd';
+
 var refs = {
   form: document.querySelector('.form'),
   input: document.querySelector('.form__input'),
@@ -17,10 +13,6 @@ var refs = {
   url: [],
   tempArr: []
 };
-// if(getLocalStorageObjectItem('urlList')){
-//   template(getLocalStorageObjectItem('urlList'))
-// }
-
 
 refs.form.addEventListener('submit', hendlerSubmit);
 refs.list.addEventListener('click', handlerDeletList);
@@ -38,33 +30,30 @@ function handlerDeletList(_ref) {
 function hendlerSubmit(_ref2) {
   var target = _ref2.target;
 
-  var inp = refs.input.value;
-  if (refs.url.includes(inp)) return alert('такая закладка уже существует');
-  if (!refs.urlTest.test(inp)) return alert('не вверный ввод урла');
+  var inp = slesh(refs.input.value);
+  if (!refs.urlTest.test(inp)) return alert('error: undefined url');
+  if (refs.url.includes(inp)) return alert('this url is added');
   refs.url.push(inp);
   template(refs.url);
 }
 
-function preview(user_url) {
-  return fetch(refs.urlPreview + '/?key=' + APP_KEY + '&q=' + user_url).then(function (response) {
-    if (response.ok) return response.json();
-    throw new Error('error:' + response.statusText);
-  });
-}
-
 function template(arr) {
   refs.tempArr = [];
-  setLocalStorageObjectItem('urlList', arr);
   arr.map(function (n) {
     preview(n).then(function (d) {
       refs.tempArr.push(d);
       return refs.tempArr;
     }).then(function (arr) {
-
       return past(arr);
     }).catch(function (er) {
       return console.log(er);
     });
+  });
+}
+function preview(user_url) {
+  return fetch(refs.urlPreview + '/?key=' + APP_KEY + '&q=' + user_url).then(function (response) {
+    if (response.ok) return response.json();
+    throw new Error('error:' + response.statusText);
   });
 }
 
@@ -74,16 +63,20 @@ function past(arr) {
     return acc + t(el);
   }, '');
   refs.list.innerHTML = p;
+  setLocalStorageObjectItem('urlList', refs.url);
 }
 
 function deletUrl(a, b) {
   new Promise(function (resolve, reject) {
     resolve(refs.url.map(function (r) {
-      if (a == r || '{r}/') refs.url.splice(refs.url.indexOf(r), 1);
+      if (a == r) {
+        refs.url.splice(refs.url.indexOf(r), 1);
+        setLocalStorageObjectItem('urlList', refs.url);
+      }
     }));
     reject('error');
   }).then(function (r) {
-    return b.innerHTML = '';
+    b.innerHTML = '';
   }).catch(function (error) {
     return console.log(error);
   });
@@ -96,6 +89,7 @@ function setLocalStorageObjectItem(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 }
+
 function getLocalStorageObjectItem(key) {
   var json = localStorage.getItem(key);
   if (json === undefined) {
@@ -103,13 +97,13 @@ function getLocalStorageObjectItem(key) {
   }
   return JSON.parse(json);
 }
-var localUrlList = Array.from(getLocalStorageObjectItem('urlList'));
 
-function startDec(arr) {
-  arr.map(function (r) {
-    refs.url.push(r.url);
-  });
-  template(refs.url);
+function slesh(a) {
+  if (a.slice(-1) !== '/') return a + '/';
+  return a;
 }
 
-startDec(localUrlList);
+(function startDesc() {
+  refs.url = Array.from(getLocalStorageObjectItem('urlList'));
+  template(refs.url);
+})();

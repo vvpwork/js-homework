@@ -25,15 +25,15 @@ const declare    = require('gulp-declare');
 
 
 gulp.task('templates', () =>
-    gulp.src('./templates/*.html')
+    gulp.src('./src/html/templates/*.html')
         .pipe(handlebars())
         .pipe(wrap('Handlebars.template(<%= contents %>)'))
         .pipe(declare({
-            namespace: 'VP.templates',
+            namespace: 'App.templates',
             noRedeclare: true,
         }))
         .pipe(concat('templates.js'))
-        .pipe(gulp.dest('./templates')),
+        .pipe(gulp.dest('./build/js')),
 )
 gulp.task('html', () =>
   gulp
@@ -142,6 +142,7 @@ gulp.task('build', cb =>
     'svg-sprite',
     'images',
     'fonts',
+    'templates',
     'styles',
     'html',
     'scripts',
