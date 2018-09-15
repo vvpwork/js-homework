@@ -8,7 +8,7 @@ const refs = {
   input: document.querySelector ('.form__input'),
   list: document.querySelector ('.url__list'),
   temp: document.querySelector ('.url__templates').innerHTML.trim (),
-  urlPreview: 'http://api.linkpreview.net',
+  urlPreview: 'https://api.linkpreview.net',
   urlTest: /\b(?:(?:https?|ftp|http):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i,
   url: [],
   tempArr: [],
@@ -46,6 +46,7 @@ function template (arr) {
       })
       .then (arr => {
         return past (arr);
+        setLocalStorageObjectItem('urlList', refs.url)
       })
       .catch (er => console.log (er));
   });
