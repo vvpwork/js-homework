@@ -2,7 +2,35 @@
 
 
 const APP_KEY = '5b93d8100e62278344b8abff221294244b92ecbf5b0bd';
-
+class UrlCheck {
+   constructor( parentElement, appkey=APP__KEY, ){
+     this.APP__KEY = appkey;
+     this.parentElement = parentElement;
+     this.form = this.parentElement.querySelector ('.form');
+     this.input = this.parentElement.querySelector ('.form__input');
+     this.list = this.parentElement.querySelector ('.url__list');
+     this.temp = this.parentElement.querySelector ('.url__templates').innerHTML.trim ();
+     this.urlPreview = 'https://api.linkpreview.net';
+     this.urlTest = /\b(?:(?:https?|ftp|http):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i;
+     this.url = [];
+     this.tempArr = [];
+   }
+   addHtml(){
+     let form = `<form action="#" class="form">
+     <input type="text" class="form__input" placeholder="add url">
+     <button class="from__submit">check</button>
+ </form>
+ <ul class="url__templates" style=" display:none;">
+     <li class="url__items">
+         <h2 class="url__title">{{title}}</h2>
+         <img  class = "url__img"src="{{image}}" alt="{{title}}" width="100" height="100">
+         <p class="url__address">{{url}}</p>
+         <p >{{description}} </p>
+         <button class="url__button">delet</button>
+     </li>
+ </ul>`
+   }
+}
 const refs = {
   form: document.querySelector ('.form'),
   input: document.querySelector ('.form__input'),
