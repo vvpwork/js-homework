@@ -22,7 +22,7 @@ function handlerDeletList({target}) {
   let items = target.closest ('.url__items');
   let urlAddress = items.querySelector ('.url__address').innerHTML;
   deletUrl (urlAddress, items);
-  setLocalStorageObjectItem ('urlList', refs.tempArr);
+  
 }
 
 function hendlerSubmit(ev) {
