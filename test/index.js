@@ -1,12 +1,18 @@
-'use strict';
-let arr = ['https://www.google.com.ua/', 'http://localhost:3000/?#', 'https://developer.mozilla.org/']
 
-// let red = arr.splice(0, 1)
-// let ind = arr.indexOf('https://www.google.com.ua')
-// let red = arr.splice(arr.indexOf('https://www.google.com.ua'), 2);
-let google = 'https://www.google.com.ua'; 
+const event = reqire('events')
 
+// emiter start //
 
-arr.map(r=> {if (r == (google + '/') || r == google) arr.splice(arr.indexOf(r), 1)})
+const btn = document.querySelector('.btn');
+const emitter= new event.EventEmitter();
+console.log(emitter);
+btn.addEventListener('click', ()=>{
+    let der = 'push in button'
+    emitter.emit('red', der);
+})
 
-console.log(arr)
+setTimeout(() => {
+    emitter.subscribe('red', data=>{
+        console.log(data);
+    })
+}, 2000);
