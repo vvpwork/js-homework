@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    main: './src/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -60,7 +60,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       hash: true,
-      template: './src/html/index.html',
+      template: './src/index.html',
     }),
   ],
   devServer: {

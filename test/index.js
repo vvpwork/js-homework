@@ -1,10 +1,11 @@
 
-const event = reqire('events')
-
+class EventEmitter{
+    
+}
 // emiter start //
 
 const btn = document.querySelector('.btn');
-const emitter= new event.EventEmitter();
+const emitter= new EventEmitter();
 console.log(emitter);
 btn.addEventListener('click', ()=>{
     let der = 'push in button'
