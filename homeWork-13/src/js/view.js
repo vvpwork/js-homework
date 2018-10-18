@@ -1,30 +1,23 @@
-import templates from '../templates/url_items.hbs'
+import templates from '../templates/url_items.hbs';
 
+export default class View {
+  constructor() {
+    this.refs = {};
+    this.refs.form = document.querySelector('.form');
+    this.refs.inp = this.refs.form.querySelector('.form__input');
+    this.refs.urlButton = document.querySelector('.url__button');
+    this.refs.urlList = document.querySelector('.url__list');
+  }
 
-export default class View{
-    constructor(){
-        this.refs = {};
-        this.refs.form =document.querySelector('.form');
-        this.refs.inp = this.refs.form.querySelector('.fprm__input');
-        this.refs.urlButton = document.querySelector('.url__button');
-        this.refs.urlList = document.querySelector('.url__list');
-    }
-
-    templateItem(arr){
-        let temp = templates(arr);
-        return temp
-    }
-
-    addItems(arr){
-        console.log(arr);
-        arr.map(r=>{
-            console.log(r);
-            this.refs.urlList.insertAdjacentHTML('afterbegin', this.templateItem(r))
-            
-        })
-        
-    }
+  addItems(a) {
+    a.map(r => {
+      let obj = {
+        url: r,
+      };
+      return this.refs.urlList.insertAdjacentHTML('afterbegin', templates(obj));
+    });
+  }
+  deletItem(item) {
+    this.refs.urlList.removeChild(item)
+  }
 }
-      
-
-

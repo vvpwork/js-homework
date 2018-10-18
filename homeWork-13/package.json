@@ -1,7 +1,6 @@
 {
   "name": "webpack-tut",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
@@ -33,5 +32,6 @@
   },
   "dependencies": {
     "handlebars": "^4.0.12"
-  }
+  },
+  "description": ""
 }
