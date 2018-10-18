@@ -11,7 +11,7 @@ const arrUrl = [];
   for (let i =1; i < 14; i+=1){
         arrUrl.push({
             name: `module-${i}`,
-            url:`${refs.url}${i == 12? `${i}/build`:i}`,
+            url:`${refs.url}${i >11? `${i}/build`:i}`,
             description:``, 
         })
     }
