@@ -6,7 +6,9 @@ export default class Controler {
   }
 
   loadDesc() {
-    this._view.addItems(this._model.startUrlList());
+    let startUrlList =this._model.startUrlList();
+    if(startUrlList.length < 1) return; 
+    this._view.addItems(startUrlList);
   }
 
   addFormListener() {

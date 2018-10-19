@@ -8,6 +8,6 @@ const model = new Model();
 const view = new View();
 const control = new Controler(view, model);
 
-// control.loadDesc();
+control.loadDesc();
 control.addFormListener();
 control.addUrlListener();
