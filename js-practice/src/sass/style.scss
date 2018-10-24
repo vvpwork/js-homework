@@ -1,0 +1,106 @@
+$siteGrey: #c6c7c9;
+$bgButton: #cddc39; 
+$textColor: #673ab7;
+$fonts: Roboto;
+
+
+
+.site{
+    &__header{
+        
+        position: relative;
+        max-width: 1200px;
+        padding-top: 160px;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 46px;
+        @media (max-width: 549px){
+            margin-bottom: 20px;
+        }
+    }
+   
+    &__choise{
+        position: absolute;
+        top: 33px;
+        right: 22px;
+        font: 400 16px $fonts;
+        color: $textColor;
+        &::before{
+            content: '';
+            position: absolute;
+            background: url(../img/icon.png);
+            width: 14px;
+            height: 14px;
+            left: -24px;
+            top: 4px;
+        }
+    }
+}
+.form{
+    text-align: center;
+    margin-bottom: 30px;
+    &__input{
+        width: 450px;
+        height: 26px;
+        line-height: 26px;
+        font: 400 10px $fonts, monospace;
+        margin-right: 16px;
+        padding-left: 15px;
+        border-radius: 15px;
+        box-sizing: border-box;
+        border: 3px solid $siteGrey;
+        &::placeholder{
+            color: $siteGrey;
+        }
+        @media (max-width: 549px) {
+            width: 300px;
+            height: 32px;
+            margin-bottom: 15px;
+        }
+          
+    }
+    &__submit{
+        background:$bgButton;
+        width: 81px;
+        height: 26px;
+        border: none;
+        border-radius: 15px;
+        font: 400 14px 'Comfortaa', monospace;
+        color: white;
+        &:hover{
+            cursor: pointer;
+        }
+        &:focus{
+            outline: none; 
+        }
+        @media (max-width: 549px){
+            width: 120px;
+            height: 45px;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+.gallary{
+    &__list{
+        list-style: none;
+        display: flex;
+        position: relative;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 895px;
+        margin: 0 auto;
+    }
+    &__items{
+        width: 210px;
+        height: 122px;
+        margin-bottom: 14px;
+        overflow: hidden;
+    }
+}
+.submit{
+    padding-top: 31px;
+    @media (max-width:549px) {
+        padding-top: 80px;
+    }
+}

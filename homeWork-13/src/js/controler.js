@@ -6,8 +6,8 @@ export default class Controler {
   }
 
   loadDesc() {
-    let startUrlList =this._model.startUrlList();
-    if(startUrlList.length < 1) return; 
+    let startUrlList = this._model.startUrlList();
+    if( !startUrlList) return;
     this._view.addItems(startUrlList);
   }
 
