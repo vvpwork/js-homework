@@ -1,106 +1,186 @@
 $siteGrey: #c6c7c9;
-$bgButton: #cddc39; 
-$textColor: #673ab7;
+$bgButton: #cddc39;
+$primaryViolet: #673ab7;
 $fonts: Roboto;
+$fontButton: Comfortaa;
 
-
-
-.site{
-    &__header{
-        
-        position: relative;
-        max-width: 1200px;
-        padding-top: 160px;
-        margin: 0 auto;
-        text-align: center;
-        margin-bottom: 46px;
-        @media (max-width: 549px){
-            margin-bottom: 20px;
-        }
-    }
-   
-    &__choise{
-        position: absolute;
-        top: 33px;
-        right: 22px;
-        font: 400 16px $fonts;
-        color: $textColor;
-        &::before{
-            content: '';
-            position: absolute;
-            background: url(../img/icon.png);
-            width: 14px;
-            height: 14px;
-            left: -24px;
-            top: 4px;
-        }
-    }
-}
-.form{
+.site {
+  &__header {
+    position: relative;
+    max-width: 1200px;
+    padding-top: 160px;
+    margin: 0 auto;
     text-align: center;
+    margin-bottom: 46px;
+    @media (max-width: 549px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__choise {
+    position: absolute;
+    top: 33px;
+    right: 22px;
+    font: 400 16px $fonts;
+    color: $primaryViolet;
+    &::before {
+      content: '';
+      position: absolute;
+      background: url(../img/icon.png);
+      width: 14px;
+      height: 14px;
+      left: -24px;
+      top: 4px;
+    }
+  }
+}
+.form {
+  text-align: center;
+  margin-bottom: 30px;
+  &__input {
+    width: 450px;
+    height: 26px;
+    line-height: 26px;
+    font: 400 10px $fonts, monospace;
+    margin-right: 16px;
+    padding-left: 15px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: 3px solid $siteGrey;
+    &::placeholder {
+      color: $siteGrey;
+    }
+    @media (max-width: 549px) {
+      width: 300px;
+      height: 32px;
+      margin-bottom: 15px;
+    }
+  }
+  &__submit {
+    background: $bgButton;
+    width: 81px;
+    height: 26px;
+    border-radius: 15px;
+    font: 400 14px $fontButton, monospace;
+    color: white;
+
+    @media (max-width: 549px) {
+      width: 120px;
+      height: 45px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+.gallary {
+  position: relative;
+  &__list {
+    list-style: none;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 895px;
+    margin: 0 auto;
     margin-bottom: 30px;
-    &__input{
-        width: 450px;
-        height: 26px;
-        line-height: 26px;
-        font: 400 10px $fonts, monospace;
-        margin-right: 16px;
-        padding-left: 15px;
-        border-radius: 15px;
-        box-sizing: border-box;
-        border: 3px solid $siteGrey;
-        &::placeholder{
-            color: $siteGrey;
-        }
-        @media (max-width: 549px) {
-            width: 300px;
-            height: 32px;
-            margin-bottom: 15px;
-        }
-          
+  }
+  &__items {
+    position: relative;
+    width: 210px;
+    height: 122px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    &::before{
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      background: url(../img/delet.png) no-repeat center;
+      background-size: cover;
     }
-    &__submit{
-        background:$bgButton;
-        width: 81px;
-        height: 26px;
-        border: none;
-        border-radius: 15px;
-        font: 400 14px 'Comfortaa', monospace;
-        color: white;
-        &:hover{
-            cursor: pointer;
-        }
-        &:focus{
-            outline: none; 
-        }
-        @media (max-width: 549px){
-            width: 120px;
-            height: 45px;
-            display: block;
-            margin: 0 auto;
-        }
-    }
+  }
+  &__showMore {
+    display: none;
+    width: 146px;
+    height: 25px;
+    margin: 0 auto;
+    margin-bottom: 136px;
+    border-radius: 15px;
+    background: $bgButton;
+    color: white;
+    font: 600 14px $fontButton, monospace;
+  }
 }
-.gallary{
-    &__list{
-        list-style: none;
+
+.modal {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  top: 218px;
+  padding-top: 45px;
+  background: rgba(#918f8f, 0.5);
+  &__img{
+    margin-bottom: 15px;
+}
+  &__wrapper {
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+  }
+  &__nav{
+      display: flex;
+      justify-content: space-around ;
+      align-items: center;
+      width: 114px;
+      height: 34px;
+      border-radius: 15px;
+      background:$primaryViolet;
+      margin: 0 auto;
+    &--wrapper{
         display: flex;
-        position: relative;
-        flex-wrap: wrap;
         justify-content: space-around;
-        max-width: 895px;
-        margin: 0 auto;
+        align-items: center;
     }
-    &__items{
-        width: 210px;
-        height: 122px;
-        margin-bottom: 14px;
-        overflow: hidden;
+  
+
+  }
+  &__button {
+    display: inline-block;
+    width: 10px;
+    height: 9px;
+    background-size: contain;
+    
+
+    &--next {
+      background: url('../img/next.png') center no-repeat;
     }
+    &--preview {
+      background: url('../img/preview.png') center no-repeat;
+    }
+    &--close {
+      background: url('../img/close.png') center no-repeat;
+      width: 11px;
+
+    }
+    &--choise {
+      background: url('../img/choise.png') center no-repeat;
+      margin-right: 1px;
+    }
+  }
 }
-.submit{
-    padding-top: 31px;
-    @media (max-width:549px) {
-        padding-top: 80px;
-    }
+.submit {
+  padding-top: 31px;
+  @media (max-width: 549px) {
+    padding-top: 80px;
+  }
 }
+
+.show {
+  display: block;
+}
+
+
